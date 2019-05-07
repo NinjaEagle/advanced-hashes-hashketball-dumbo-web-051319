@@ -1,22 +1,5 @@
 # Write your code here!
 require "pry"
-def good_practices
-  game_hash.each do |location, team_data|
-    #are you ABSOLUTELY SURE what 'location' and 'team data' are? use binding.pry to find out!
-    binding.pry
-      team_data.each do |attribute, data|
-        #are you ABSOLUTELY SURE what 'attribute' and 'team data' are? use binding.pry to find out!
-        binding.pry
-
-        #what is 'data' at each loop through out .each block? when will the following line of code work and when will it break?
-        data.each do |data_item|
-            binding.pry
-      end
-    end
-  end
-end
-
-
 
 def game_hash
   {
@@ -136,13 +119,13 @@ def game_hash
 end
 
 def num_points_scored(player)
-game_hash.each do |a, b|
-b[:players].each do |player_name, data|
+  game_hash.each do |a, b|
+  b[:players].each do |player_name, data|
+    binding.pry
   if player_name == player
     return data[:points]
     end
   end
-end
 end
 
 def shoe_size(player)
@@ -178,6 +161,7 @@ def player_numbers(name)
     end
   end
   array
+  binding.pry
 end
 
 def player_stats(name)
@@ -195,14 +179,15 @@ def big_shoe_rebounds
    rebound = 0
    game_hash.each do |location, team_data|
       team_data[:players].each do |player_name, value|
-         if value[:shoe] > shoe_size
-            shoe_size = value[:shoe]
-            rebound = value[:rebounds]
-         end
+        if value[:shoe] > shoe_size
+          shoe_size = value[:shoe]
+          rebound = value[:rebounds]
+        end
       end
-   end
-   rebound
-   def most_points_scored
+    end
+ end
+
+def most_points_scored
   pName=nil
   pScore=0
   game_hash.each do |team, teamDetails|
@@ -220,7 +205,7 @@ def winning_team
   winner={}
   game_hash.values.each do |teamDetails|
     teamPoints=0
-    teamDetails[:players]. each do |indvidStats|
+    teamDetails[:players].each do |indvidStats|
       teamPoints += indvidStats[:points]
     end
     winner[teamDetails[:team_name]]= teamPoints
@@ -254,20 +239,3 @@ def long_name_steals_a_ton?
       end
     end
   end
-
-  if pName == player_with_longest_name
-    return true
-  else
-    return false
-  end
-end
-
-def home_team_addpoints
-  pName=nil
-  game_hash.each do |home, teamDetails|
-    teamDetails[:players].each do |indvidStats|
-          game_hash[:home][:points]=indvidStats[:points]+4
-      end
-    end
-  end
-  puts home_team_addpoints
